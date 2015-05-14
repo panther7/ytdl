@@ -70,9 +70,9 @@ Function validUrl([string]$url="") {
 
 Function getFilename([string]$url="", [bool]$restrict=$true) {
     if ( $restrict ) {
-        return & $script --restrict-filenames --max-quality mp4 --get-filename -o "$outputTemplate" $url
+        return & $script --restrict-filenames -f "best" --get-filename -o "$outputTemplate" $url
     } else {
-        return & $script --max-quality mp4 --get-filename -o "%(title)s" $url
+        return & $script -f "best" --get-filename -o "%(title)s" $url
     }
 }
 
@@ -83,9 +83,9 @@ Function downloadYT([string]$url="") {
 	#Write-Host "* Filename: " -NoNewLine
 	#Write-Host $filename -backgroundcolor "Yellow" -foregroundcolor "Black"
 	#Write-Host "* Url:"$url
-	#$p = Start-Process "$script" -ArgumentList "--restrict-filenames --buffer-size 16K -w --max-quality mp4 -o ""$outputDir$outputTemplate"" $url" -WindowStyle Minimized -Wait -PassThru
+	#$p = Start-Process "$script" -ArgumentList "--restrict-filenames --buffer-size 16K -w -f "best" -o ""$outputDir$outputTemplate"" $url" -WindowStyle Minimized -Wait -PassThru
 	#return $p.ExitCode
-	& $script --restrict-filenames --buffer-size 16K -w --max-quality mp4 -o "$outputDir$outputTemplate" $url
+	& $script --restrict-filenames --buffer-size 16K -w -f "best" -o "$outputDir$outputTemplate" $url
 }
 
 
